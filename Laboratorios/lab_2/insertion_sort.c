@@ -1,6 +1,6 @@
 #include "insertion_sort.h"
 
-void sort(Item *a, int lo, int hi){
+/*void sort(Item *a, int lo, int hi){
 
     for(int i=lo+1; i <= hi; i++){
         int j = i;
@@ -9,4 +9,4 @@ void sort(Item *a, int lo, int hi){
             j--;
         }
     }
-}
+}*/
