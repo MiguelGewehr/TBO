@@ -1,24 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "item.h"
 #include "insertion_sort.h" // Inclua o metodo que deseja usar para ordenar;
 
 extern void sort(Item *a, int lo, int hi);
 
-int main(){
+void arr_read(char *path, Item *itens);
+
+int main(int argc, char *argv[]){
     
     clock_t start = clock();
-
+    
     int numItens=0;
 
-    printf("Digite o numero de itens a ser ordenado:\n");
+    printf("Digite a quantidade de itens no arquivo escolhido:\n");
     scanf("%d", &numItens);
 
     Item *itens = (Item*) malloc(sizeof(Item)*numItens);
 
-    printf("Digite os numeros do array:\n");
-    for(int i=0; i < numItens; i++) scanf("%d", &itens[i]);
+    arr_read(argv[1], itens);
 
     sort(itens,0, numItens-1);
 
@@ -34,4 +36,22 @@ int main(){
     printf("Tempo de execução: %f segundos\n", tempoExec); 
     
     return 0;
+}
+
+void arr_read(char *path, Item *itens){
+
+    FILE *arq = fopen(path, "r");
+
+    if(arq == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+
+    int i=0;
+
+    while(fscanf(arq,"%d", &itens[i]) == 1){
+        i++;
+    }
+    
+    fclose(arq);
 }
